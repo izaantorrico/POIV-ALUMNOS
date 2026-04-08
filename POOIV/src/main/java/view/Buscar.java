@@ -23,12 +23,31 @@ public class Buscar extends javax.swing.JDialog {
     /**
      * Creates new form Buscar
      */
-    public Buscar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        configurarTabla();
-cargarDatos();
-    }
+  public Buscar(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    initComponents();  
+    inicializarTabla(); 
+    configurarTabla();
+    cargarDatos();
+}
+  private void inicializarTabla() {
+    tablaAlumnos = new javax.swing.JTable();
+    
+    // Modelo de tabla
+    tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {},
+        new String [] {"DNI", "Nombre", "Apellido", "Edad", "Curso"}
+    ));
+
+    
+    javax.swing.JScrollPane scrollPane = new javax.swing.JScrollPane(tablaAlumnos);
+
+    
+    getContentPane().add(scrollPane);
+    
+    
+    scrollPane.setBounds(20, 80, 400, 200); 
+}
     private void configurarTabla() {
     String[] columnas = {"DNI", "Nombre", "Apellido", "Edad", "Curso"};
 
@@ -52,15 +71,15 @@ private void cargarDatos() {
 
             Object[] fila = {
                 a.getDni(),
-                a.toString().split(" ")[0], // nombre (rápido)
-                a.toString().split(" ")[1], // apellido (rápido)
-                // mejor sería getters si los tienes
+                a.toString().split(" ")[0], 
+                a.toString().split(" ")[1], 
+                
                 "", ""
             };
 
             modelo.addRow(new Object[]{
                 a.getDni(),
-                a.toString() // puedes mejorar esto luego
+                a.toString() 
             });
         }
 
@@ -132,8 +151,13 @@ private void cargarDatos() {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-                                                 
-    String dni = jTextField1.getText().trim();
+                  jButton1ActionPerformed(null);
+    
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String dni = jTextField1.getText().trim();
 
     if (dni.isEmpty()) {
         cargarDatos();
@@ -170,11 +194,7 @@ private void cargarDatos() {
         JOptionPane.showMessageDialog(this, "No encontrado ❌");
         cargarDatos();
     }
-
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+     this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
