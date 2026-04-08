@@ -122,13 +122,15 @@ public class RegistroAlumnos {
             String apellido = sc.nextLine();
             System.out.println("Edad alumno?");
             int edad = sc.nextInt();
+            sc.nextLine();
             System.out.println("Curso alumno?");
             String curso = sc.nextLine();
+            
             System.out.println("Dni alumno?");
             String DNI = sc.nextLine();
-            Alumno alumno = new Alumno(nombre, nombre, 0, nombre, nombre);
+            Alumno alumno = new Alumno(nombre, apellido, edad, curso, DNI);
 
-            pw.append(alumno.toString());
+            pw.println(alumno.toFileString());
             pw.close();
             fw.close();
 
@@ -157,7 +159,7 @@ public class RegistroAlumnos {
         String linea;
 
         while ((linea = br.readLine()) != null) {
-            if (linea.contains(dni)) {
+            if (linea.trim().contains(dni)) {
                 br.close();
                 return true;
             }

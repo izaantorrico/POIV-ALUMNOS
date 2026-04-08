@@ -1,1 +1,1 @@
-jose jose | Edad: 0 | Curso: jose | DNI: nullizan izan | Edad: 0 | Curso: izan | DNI: null
+izan,torrico,23,daw,545
